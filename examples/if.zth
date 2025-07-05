@@ -1,0 +1,10 @@
+0 0
+if
+  42 print drop
+else
+  if
+    21 print
+  else
+    7 print
+  then
+then

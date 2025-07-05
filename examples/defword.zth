@@ -1,0 +1,3 @@
+: printletter 99 emit cr ;
+
+printletter

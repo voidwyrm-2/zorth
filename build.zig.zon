@@ -1,0 +1,29 @@
+.{
+    .name = .zorth,
+
+    .version = "0.2.7",
+
+    .fingerprint = 0x494a01802a343ba7, // Changing this has security and trust implications.
+
+    .minimum_zig_version = "0.15.0",
+
+    .dependencies = .{
+        .clap = .{
+            .url = "git+https://github.com/Hejsil/zig-clap#cc5c6a5d71a317ed4b0ad776842d1d0655f72d0a",
+            .hash = "clap-0.10.0-oBajB7jkAQAZ4cKLlzkeV9mDu2yGZvtN2QuOyfAfjBij",
+        },
+        .mibu = .{
+            .url = "git+https://github.com/xyaman/mibu#12e50de03e927199ab0e6d680f0250245f923f52",
+            .hash = "mibu-0.0.1-AAAAACyjAADc_nfE0ISejvjWK6T2sLQK_6i7Tb6YN5iq",
+        },
+    },
+
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "LICENSE",
+        "readme.md",
+        "examples",
+    },
+}

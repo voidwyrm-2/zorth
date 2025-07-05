@@ -290,7 +290,7 @@ const ValueKind = enum {
 
 const Value = union(ValueKind) {
     byte: u8,
-    int: i64,
+    int: isize,
     float: f32,
     ptr: [*]Value,
 
@@ -316,7 +316,7 @@ const Value = union(ValueKind) {
         return switch (to) {
             .byte => .{ .byte = switch (self) {
                 .byte => |v| v,
-                .int => |v| @truncate(@as(u64, @bitCast(v))),
+                .int => |v| @truncate(@as(usize, @bitCast(v))),
                 .float => |v| @intFromFloat(v),
                 .ptr => |v| @truncate(@intFromPtr(v)),
             } },
@@ -334,7 +334,7 @@ const Value = union(ValueKind) {
             } },
             .ptr => .{ .ptr = switch (self) {
                 .byte => |v| @ptrFromInt(v),
-                .int => |v| @ptrFromInt(@as(u64, @bitCast(v))),
+                .int => |v| @ptrFromInt(@as(usize, @bitCast(v))),
                 .float => |v| {
                     const i: i32 = @intFromFloat(v);
                     const u: u32 = @bitCast(i);
@@ -600,7 +600,7 @@ pub const Builtins = struct {
             switch (val) {
                 .byte => |v| try stdout.print("{c}", .{v}),
                 .int => |v| {
-                    const u: u64 = @bitCast(v);
+                    const u: usize = @bitCast(v);
                     const char: u8 = @truncate(u);
 
                     try stdout.print("{c}", .{char});
@@ -692,7 +692,7 @@ pub const Builtins = struct {
             });
 
             const val = try state.stack.pop();
-            const u: u64 = @bitCast(val.int);
+            const u: usize = @bitCast(val.int);
             const size: usize = @truncate(u);
 
             const arr = try state.allocator.alloc(Value, size);

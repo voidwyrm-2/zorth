@@ -5,6 +5,7 @@ obj/
 zig-out/
 .zig-cache/
 build/
+pkg/
 *.so
 *.dylib
 *.dll
